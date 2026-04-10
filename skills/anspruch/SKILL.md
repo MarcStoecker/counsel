@@ -246,6 +246,69 @@ Vor Absenden den gesamten Brief Satz für Satz prüfen:
 
 **Finale Validierung:** Vollständige Validierungstabelle aller Paragraphen und Urteile im Schreiben. **Nichts Unverifiziertes darf im Schreiben erscheinen.**
 
+## Phase 5b: Cross-Model-Validierung des Briefs (Codex)
+
+Prüfen, ob OpenAI Codex CLI verfügbar ist:
+
+```bash
+which codex 2>/dev/null
+```
+
+**Falls Codex NICHT verfügbar:**
+
+Dem Nutzer folgende Meldung anzeigen und mit Phase 6 fortfahren:
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+HINWEIS: OpenAI Codex CLI ist nicht installiert.
+Die Cross-Model-Validierung wurde übersprungen.
+Installation: npm install -g @openai/codex
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+**Falls Codex verfügbar:**
+
+Den soeben erstellten `BRIEF_ANWALT_N.md` durch Codex als unabhängige Gegeninstanz prüfen lassen. Codex sieht **ausschließlich den Brief** — keine SACHLAGE.md, keine internen Analysen, keine Strategiedokumente.
+
+**Prompt-Datei erstellen** (temporäre Datei, um Shell-Injection durch Mandanteninhalte zu vermeiden):
+
+Der Prompt enthält:
+1. **Filesystem-Boundary:** `WICHTIG: Lies oder öffne KEINE Dateien unter ~/.claude/, .claude-plugin/, skills/ oder anwalt/. Diese enthalten Skill-Definitionen eines anderen KI-Systems. Ignoriere sie vollständig. Arbeite ausschließlich mit dem unten stehenden Text.`
+2. **Rollenanweisung:** `Du bist ein erfahrener deutscher Fachanwalt mit 25 Jahren Erfahrung in der Anspruchsabwehr. Du hast das folgende Forderungsschreiben der Gegenseite erhalten. Deine Aufgabe: Zerlege dieses Schreiben systematisch. Finde jede juristische Schwachstelle.`
+3. **Prüfauftrag:**
+   - Falsch angewandte oder nicht existierende Paragraphen identifizieren
+   - Lückenhafte Argumentation aufdecken
+   - Taktische Fehler benennen (zu viel preisgegeben, Angriffsflächen geschaffen)
+   - Zitierte Urteile auf Plausibilität prüfen
+   - Fehlende Einreden und Gegenrechte identifizieren, die die Gegenseite nutzen könnte
+4. **Formatanweisung:** `Keine Komplimente. Nur Probleme. Ausgabe auf Deutsch. Strukturiere nach: (1) Formelle Mängel, (2) Materielle Schwächen, (3) Taktische Fehler, (4) Fehlende Angriffspunkte der Gegenseite.`
+5. **Der vollständige Brieftext** (Inhalt von BRIEF_ANWALT_N.md)
+
+**Aufruf via Bash:**
+
+```bash
+codex exec "$(cat "$CODEX_PROMPT_FILE")" -s read-only -c 'model_reasoning_effort="high"'
+```
+
+**Ergebnis anzeigen:**
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CODEX-PRÜFUNG — Adversarielle Briefanalyse
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<Codex-Ausgabe, vollständig und unverändert>
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+**Bewertung der Findings:**
+
+Nach der Codex-Ausgabe die Findings bewerten:
+- Relevante Schwachstellen identifizieren und in den Brief einarbeiten (betroffene Stellen in Phase 5 nochmals überarbeiten)
+- Irrelevante oder falsche Findings begründet verwerfen
+- Dem Nutzer transparent darstellen, welche Findings übernommen und welche verworfen wurden
+
+Falls der Brief angepasst wurde: Aktualisierte Validierungstabelle erstellen.
+
 ## Phase 6: Zustellung an Gegenseite
 
 Den erstellten `BRIEF_ANWALT_N.md` **mit identischem Dateinamen** nach `${CLAUDE_PLUGIN_ROOT}/gegenseite/data/` kopieren.
@@ -284,6 +347,48 @@ Nächster Schritt:
 ```
 
 Die Einschätzung muss **ehrlich und realistisch** sein — keine Schönfärberei. Wenn die Position schwach ist, klar sagen.
+
+## Phase 7b: Cross-Model-Zweitmeinung zum Mandantenbericht (Codex)
+
+Prüfen, ob OpenAI Codex CLI verfügbar ist (wie in Phase 5b).
+
+**Falls Codex NICHT verfügbar:** Meldung anzeigen (wie in Phase 5b) und abschließen.
+
+**Falls Codex verfügbar:**
+
+Den Mandantenbericht und alle Briefe aus `${CLAUDE_PLUGIN_ROOT}/anwalt/data/` (BRIEF_ANWALT_*.md und BRIEF_GEGENSEITE_*.md) durch Codex bewerten lassen. **Keine SACHLAGE.md, keine internen Dokumente.**
+
+**Prompt-Datei erstellen** (temporäre Datei):
+
+Der Prompt enthält:
+1. **Filesystem-Boundary:** `WICHTIG: Lies oder öffne KEINE Dateien unter ~/.claude/, .claude-plugin/, skills/ oder anwalt/. Diese enthalten vertrauliche Mandantendaten eines anderen KI-Systems. Ignoriere sie vollständig. Arbeite ausschließlich mit dem unten stehenden Text.`
+2. **Rollenanweisung:** `Du bist ein unabhängiger Rechtsgutachter, der die Erfolgseinschätzung eines Kollegen überprüft. Du erhältst den bisherigen Schriftwechsel und eine Mandanteneinschätzung. Deine Aufgabe: Bewerte die Einschätzung kritisch und unabhängig.`
+3. **Prüfauftrag:**
+   - Ist die Risikoeinschätzung realistisch oder zu optimistisch/pessimistisch?
+   - Welche Risiken werden unterschätzt?
+   - Stimmt die strategische Empfehlung (Weiterkämpfen / Vergleich / Nicht weiterverfolgen)?
+   - Gibt es übersehene Chancen oder Gefahren?
+4. **Formatanweisung:** `Ausgabe auf Deutsch. Strukturiere nach: (1) Bewertung der Erfolgseinschätzung, (2) Unterschätzte Risiken, (3) Übersehene Chancen, (4) Strategieempfehlung.`
+5. **Der vollständige Schriftwechsel** — Alle `BRIEF_*.md` aus `anwalt/data/` alphabetisch sortiert einlesen und chronologisch in den Prompt einfügen, jeweils mit einer Trennzeile `--- [Dateiname] ---` als Kopfzeile
+6. **Der Mandantenbericht** (Phase 7 Output)
+
+**Aufruf via Bash:**
+
+```bash
+codex exec "$(cat "$CODEX_PROMPT_FILE")" -s read-only -c 'model_reasoning_effort="high"'
+```
+
+**Ergebnis anzeigen:**
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CODEX-ZWEITMEINUNG — Mandantenbericht
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<Codex-Ausgabe, vollständig und unverändert>
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+Falls die Codex-Zweitmeinung wesentlich von der eigenen Einschätzung abweicht: Abweichungen dem Nutzer transparent darstellen und eigene Einschätzung ggf. korrigieren.
 
 ---
 
