@@ -2,7 +2,7 @@
 
 Ein Claude Code Plugin, das einen kontradiktorischen Schriftwechsel zwischen zwei gegnerischen Fachanwälten simuliert — damit du deine Rechtsposition auf Herz und Nieren prüfen kannst, bevor du Geld beim echten Anwalt lässt.
 
-## Was es macht
+## Was Counsel macht
 
 Zwei KI-Skills agieren als gegnerische Anwälte, die ausschließlich über formelle Briefe kommunizieren:
 
@@ -56,7 +56,7 @@ Das Launcher-Script startet Claude Code mit dem Plugin im aktuellen Verzeichnis.
 /counsel:anspruch      # Dein Anwalt repliziert — und so weiter
 ```
 
-## Wie es funktioniert
+## Wie Counsel funktioniert
 
 ```
 Du ──> /counsel:anspruch ──> BRIEF_ANWALT_1.md ──> Zustellung an Gegenseite
@@ -86,7 +86,7 @@ Jede Runde erzeugt Briefe in `anwalt/data/` und `gegenseite/data/`. Gleicher Dat
 
 Falls [OpenAI Codex CLI](https://github.com/openai/codex) installiert ist (`npm install -g @openai/codex`), wird jeder Brief und jeder Mandantenbericht automatisch durch ein zweites, unabhängiges KI-Modell gegengeprüft — Schwachstellen, die Claude übersieht, fallen so auf. Ohne Codex läuft alles normal weiter.
 
-## Was es NICHT ist
+## Was Counsel nicht ist
 
 - **Kein Ersatz für einen echten Anwalt.** Anwälte haben Berufshaftpflicht, können für dich handeln, sind Organe der Rechtspflege. Ein LLM kann einen scharfen Brief entwerfen und dann von der Seitenlinie zusehen.
 - **Keine Rechtsberatung i.S.d. § 2 RDG.** Generierte Schreiben nicht ohne anwaltliche Prüfung versenden.
