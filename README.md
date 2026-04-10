@@ -1,76 +1,59 @@
 # Counsel
 
-Ein Claude Code Plugin, das einen vollständigen kontradiktorischen Schriftwechsel zwischen zwei gegnerischen Fachanwälten simuliert — damit du deine Rechtsposition auf Herz und Nieren prüfen kannst, bevor du Geld beim echten Anwalt lässt.
+Ein Claude Code Plugin, das einen kontradiktorischen Schriftwechsel zwischen zwei gegnerischen Fachanwälten simuliert — damit du deine Rechtsposition auf Herz und Nieren prüfen kannst, bevor du Geld beim echten Anwalt lässt.
 
 ## Was es macht
 
-Zwei unabhängige KI-Skills agieren als gegnerische Anwälte, die ausschließlich über formelle Briefe miteinander kommunizieren — genau wie in der Realität:
+Zwei KI-Skills agieren als gegnerische Anwälte, die ausschließlich über formelle Briefe kommunizieren:
 
-- **`/counsel:anspruch`** — Dein Anwalt. Erhebt die Sachlage, analysiert deine Rechtsposition, erstellt ein Forderungsschreiben.
-- **`/counsel:abwehr`** — Der Gegenanwalt. Erhält nur den Brief deines Anwalts und zerlegt ihn systematisch. Kennt deine interne Strategie nicht.
+- **`/counsel:anspruch`** — Dein Anwalt. Erhebt die Sachlage, analysiert deine Position, erstellt ein Forderungsschreiben.
+- **`/counsel:abwehr`** — Der Gegenanwalt. Erhält nur den Brief deines Anwalts und zerlegt ihn systematisch.
 
-Beide Seiten recherchieren aktiv Gesetzestexte, Urteile und Fachmeinungen im Web. Jeder zitierte Paragraph wird online verifiziert — nichts aus dem Gedächtnis.
+Eine strikte Informationsbarriere stellt sicher, dass die Gegenseite nur kennt, was ihr formal zugestellt wurde — wie beim echten Anwaltsgeheimnis.
 
-Eine strikte Informationsbarriere stellt sicher, dass die Gegenseite nur das kennt, was ihr formal zugestellt wurde — wie beim echten Anwaltsgeheimnis.
+### Rechtsgebiete
 
-## Warum es das gibt
+Flexibel wählbar — Vertragsrecht, Mietrecht, Arbeitsrecht, IT-Recht, Baurecht, Handelsrecht und mehr.
 
-Unvorbereitet zum Anwalt gehen ist teuer. *Vorbereitet* zum Anwalt gehen ist schlau.
-
-**Counsel** ermöglicht dir:
-- Argumente schärfen, bevor die erste Stunde abgerechnet wird
-- Schwachstellen in der eigenen Position entdecken, an die du nicht gedacht hast
-- Verstehen, was die Gegenseite voraussichtlich vorbringt
-- Mit einem klaren, strukturierten Fall beim Anwalt aufschlagen
-
-## Was es NICHT ist
-
-Dies ist eine erste Verteidigungslinie, kein Ersatz für einen echten Anwalt. Und zwar deshalb:
-
-- **Anwälte haben eine Berufshaftpflicht.** Wenn sie Mist bauen, bist du abgesichert. Ein LLM liefert dir einen selbstbewusst klingenden Absatz und wünscht dir viel Glück.
-- **Anwälte können für dich handeln.** Sie unterschreiben Dokumente, stellen Anträge, vertreten dich vor Gericht, verhandeln Vergleiche. Ein LLM kann einen scharfen Brief entwerfen und dann von der Seitenlinie zusehen.
-- **Anwälte sind Organe der Rechtspflege.** Ihre Aussagen haben rechtliches Gewicht. Die Ausgabe eines LLM hat das rechtliche Gewicht eines Post-its.
-- **Anwälte verstehen Kontext, Nuancen und deine konkrete Jurisdiktion.** Einem LLM fehlen möglicherweise die Daten, um diese Nuancen zu erkennen.
-
-Nutze **Counsel** zur Vorbereitung. Nutze einen echten Anwalt zur Durchsetzung.
-
-## Nutzung
-
-### Voraussetzungen
-
-- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI oder Desktop App
-- Dieses Plugin installiert (Repo klonen, Claude Code erkennt es automatisch)
-
-### Schnellstart
+## Schnellstart
 
 ```
-/counsel:anspruch      # Start: Dein Anwalt erhebt die Sachlage und erstellt den ersten Brief
-/counsel:abwehr        # Die Gegenseite antwortet
+/counsel:anspruch      # Dein Anwalt erhebt die Sachlage und erstellt den ersten Brief
+/counsel:abwehr        # Neue Session starten — Die Gegenseite antwortet
 /counsel:anspruch      # Dein Anwalt repliziert — und so weiter
 ```
 
-Wechsle zwischen beiden, bis du mit dem Ergebnis zufrieden bist. Belege (PDFs, E-Mails, Screenshots) einfach in `anwalt/data/` ablegen — sie werden automatisch berücksichtigt.
-
-### Unterstützte Rechtsgebiete
-
-Flexibel wählbar — Vertragsrecht, Mietrecht, Arbeitsrecht, IT-Recht und mehr. Der Skill fragt beim Start danach.
+Belege (PDFs, E-Mails, Screenshots) in `anwalt/data/` ablegen — werden automatisch berücksichtigt.
 
 ## Wie es funktioniert
 
 ```
-Du ──▶ /counsel:anspruch ──▶ Forderungsschreiben ──▶ Zustellung an Gegenseite
-                                                              │
-                                                /counsel:abwehr ◀──┘
-                                                        │
-                                                Erwiderung ──▶ Zustellung zurück
-                                                                        │
-                                                  /counsel:anspruch ◀───┘
+Du ──> /counsel:anspruch ──> BRIEF_ANWALT_1.md ──> Zustellung an Gegenseite
                                                           │
-                                                    ... und so weiter
+                                            /counsel:abwehr <──┘
+                                                    │
+                                    BRIEF_GEGENSEITE_1.md ──> Zustellung zurück
+                                                                    │
+                                              /counsel:anspruch <───┘
+                                                      │
+                                                ... und so weiter
 ```
 
-Jede Runde erzeugt formelle Briefe in `anwalt/data/` und `gegenseite/data/`. Die Informationsbarriere wird strukturell durchgesetzt — der Gegenanwalt-Skill kann deine vertraulichen Dateien schlicht nicht lesen.
+Jede Runde erzeugt Briefe in `anwalt/data/` und `gegenseite/data/`. Gleicher Dateiname auf beiden Seiten — beim Zustellen wird nichts umbenannt.
 
-## Lizenz
+## Features
 
-Dieses Projekt stellt keine Rechtsberatung im Sinne des Rechtsdienstleistungsgesetzes (RDG) dar. Es dient der Vorbereitung und Selbsteinschätzung.
+- **9-Punkt-Analyse** — Anspruchsgrundlagen, Verjährung, Nebenforderungen, Sicherungsmaßnahmen, Stufenklage, Teilklage, AGB-Kontrolle
+- **6-Stufen-Verteidigung** — Prozesshindernisse, Primär, Hilfs, Gegenansprüche/Widerklage, Prozesstaktik, Vollstreckungsabwehr
+- **4 parallele Subagenten** pro Skill für Gesetzes-, Urteils- und Gegenrecherche
+- **Prozesstaktik** — Informationsökonomie, stufenweise Argumentation, Schadensreflexion
+- **Codex-Validierung** (optional) — Cross-Model-Prüfung jedes Briefs und Mandantenberichts
+- **Mandantenbericht** — Erfolgseinschätzung mit Kostenrisiko und Handlungsempfehlung nach jeder Runde
+- **Wahrheitspflicht** — § 138 ZPO und Standesrecht (§ 43a BRAO) als harte Grenzen
+
+## Was es NICHT ist
+
+- **Kein Ersatz für einen echten Anwalt.** Anwälte haben Berufshaftpflicht, können für dich handeln, sind Organe der Rechtspflege. Ein LLM kann einen scharfen Brief entwerfen und dann von der Seitenlinie zusehen.
+- **Keine Rechtsberatung i.S.d. § 2 RDG.** Generierte Schreiben nicht ohne anwaltliche Prüfung versenden.
+
+Nutze Counsel zur Vorbereitung. Nutze einen echten Anwalt zur Durchsetzung.
