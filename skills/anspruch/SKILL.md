@@ -52,7 +52,12 @@ Die folgenden Grundsätze gelten für **jede Kommunikation mit der Gegenseite**.
 - Den Anspruch als **völlig eindeutig und unstrittig** darstellen. Keine Formulierungen wie "wir sind der Meinung" oder "möglicherweise steht uns zu". Stattdessen: **"Es steht fest, dass..."**, **"Unser Mandant hat Anspruch auf..."**.
 - **Keine Zweifel signalisieren.** Auch wenn die Rechtslage komplex ist — nach außen ist die Position klar und unerschütterlich.
 - **Nicht rechtfertigen.** Wer sich erklärt, wirkt unsicher. Der Anspruch steht — die Gegenseite muss reagieren.
-- **Grenze: Wahrheitspflicht (§ 138 Abs. 1 ZPO analog).** Selbstbewusste Darstellung betrifft die rechtliche Einordnung, nicht Tatsachen. Tatsachenbehauptungen müssen wahr sein. Zulässig: 'Unser Mandant hat Anspruch auf...' (Wertung). Unzulässig: Erfundene oder bewusst verfälschte Sachverhaltsangaben.
+- **Wahrheitspflicht (§ 138 Abs. 1 ZPO analog) — taktisch verstehen:**
+  - Die Pflicht betrifft **Tatsachenbehauptungen**, nicht rechtliche Wertungen. *"Unser Mandant hat Anspruch auf..."* ist eine Wertung — beliebig selbstbewusst formulierbar.
+  - **Lügen ist verboten. Schweigen nicht.** Es gibt keine Pflicht, der Gegenseite zu helfen. Ungünstige Tatsachen, nach denen nicht gefragt wird, müssen nicht offenbart werden.
+  - **Vage formulieren statt lügen.** Statt einer falschen Behauptung: den Punkt weglassen oder so allgemein formulieren, dass er technisch korrekt ist. *"Die Leistung entsprach nicht den vertraglichen Anforderungen"* sagt alles und nichts.
+  - **Rechtliche Einordnung aggressiv nutzen.** Die gleichen Tatsachen können als Pflichtverletzung, Verzug, arglistige Täuschung oder schlicht Vertragsverletzung dargestellt werden — je nachdem, was den meisten Druck erzeugt. Das ist keine Lüge, das ist Framing.
+  - **Harte Grenze:** Keine erfundenen oder bewusst verfälschten Sachverhaltsangaben. Alles andere ist Anwaltshandwerk.
 
 ### 4. Informationskontrolle — Gegenseite zum Reden bringen
 
@@ -64,11 +69,12 @@ Die folgenden Grundsätze gelten für **jede Kommunikation mit der Gegenseite**.
 
 Vor Fertigstellung des Briefes **jeden einzelnen Satz** prüfen:
 
-- Enthält dieser Satz eine Tatsache, die wir nicht beweisen können? → **Streichen oder umformulieren.**
+- Enthält dieser Satz eine Tatsache, die wir nicht beweisen können? → **Umformulieren** (vagere Fassung, die technisch korrekt bleibt) **oder streichen.**
 - Gibt dieser Satz der Gegenseite einen Angriffspunkt? → **Streichen.**
-- Räumt dieser Satz ein Mitverschulden oder eine Kenntnis ein? → **Streichen.**
+- Räumt dieser Satz ein Mitverschulden oder eine Kenntnis ein? → **Streichen.** Auch implizite Einräumungen vermeiden — *"trotz des Mangels"* bestätigt den Mangel.
 - Schwächt dieser Satz unsere Position in einem späteren Prozess? → **Streichen.**
 - Ist dieser Satz notwendig, um unsere Forderung zu begründen? Falls nein → **Streichen.**
+- Kann dieser Satz so umformuliert werden, dass er denselben Druck erzeugt, aber weniger angreifbar ist? → **Umformulieren.**
 
 **Grundregel: Was nicht im Brief steht, kann nicht gegen uns verwendet werden.**
 
@@ -215,7 +221,7 @@ Beispiel: Erster Brief → `BRIEF_ANWALT_1.md`, zweiter → `BRIEF_ANWALT_2.md`,
 - **Nebenforderungen prüfen** — Bei Geldforderungen STETS: Verzugszinsen (§ 288 BGB, 5 Prozentpunkte über Basiszinssatz, bei Handelsgeschäften 9 Prozentpunkte nach § 288 Abs. 2 BGB), Verzugsschaden (§ 280 Abs. 1, 2 i.V.m. § 286 BGB), vorgerichtliche Anwaltskosten nach RVG.
 - **Fristsetzung** — In der Regel 14 Tage mit konkretem Datum
 - **Zugangsnachweis** — Mandanten empfehlen: Einschreiben/Rückschein oder Einwurf-Einschreiben. Im Mandantenbericht den Zustellungsweg benennen.
-- **Androhung** — Nur zulässige Konsequenzen: Klageerhebung, Mahnbescheid, Zwangsvollstreckung, Strafanzeige (nur bei tatsächlichem Straftatverdacht). **NIEMALS:** Medienveröffentlichung, Information von Geschäftspartnern, Schufa-Meldung ohne Grundlage, sachfremde Strafanzeigen. Grenze: § 240 StGB — angedrohte Konsequenz muss in sachlichem Zusammenhang mit der Forderung stehen.
+- **Androhung** — Maximalen Druck aufbauen, aber im rechtlich zulässigen Rahmen: Klageerhebung, Mahnbescheid, Zwangsvollstreckung, Strafanzeige (bei tatsächlichem Straftatverdacht — z.B. Betrug, Untreue). Grenze: § 240 StGB — Konsequenz muss sachlich zusammenhängen. **Taktisch:** Die Androhung so formulieren, dass die Gegenseite die Kosten und den Aufwand eines Rechtsstreits vor Augen hat, ohne explizit zu drohen. *"Wir gehen davon aus, dass eine gerichtliche Klärung in Ihrem Interesse ebenso wenig wünschenswert ist"* erzeugt Druck ohne Angriffsfläche.
 - **Tonalität** — Bestimmt, selbstbewusst, überlegen. Der Anspruch steht fest — keine Zweifel, keine Rechtfertigung.
 
 ### Eskalationsstufe bestimmen:
@@ -278,10 +284,12 @@ Der Prompt enthält:
 3. **Prüfauftrag:**
    - Falsch angewandte oder nicht existierende Paragraphen identifizieren
    - Lückenhafte Argumentation aufdecken
-   - Taktische Fehler benennen (zu viel preisgegeben, Angriffsflächen geschaffen)
+   - Taktische Fehler benennen (zu viel preisgegeben, unnötige Tatsachen eingeräumt, Angriffsflächen geschaffen)
+   - Stellen identifizieren, an denen vage Formulierungen oder Schweigen taktisch klüger wären als konkrete Behauptungen
    - Zitierte Urteile auf Plausibilität prüfen
    - Fehlende Einreden und Gegenrechte identifizieren, die die Gegenseite nutzen könnte
-4. **Formatanweisung:** `Keine Komplimente. Nur Probleme. Ausgabe auf Deutsch. Strukturiere nach: (1) Formelle Mängel, (2) Materielle Schwächen, (3) Taktische Fehler, (4) Fehlende Angriffspunkte der Gegenseite.`
+   - Implizite Einräumungen finden, die der Gegenseite die Beweisführung erleichtern
+4. **Formatanweisung:** `Keine Komplimente. Nur Probleme. Ausgabe auf Deutsch. Strukturiere nach: (1) Formelle Mängel, (2) Materielle Schwächen, (3) Taktische Fehler und unnötige Offenlegungen, (4) Fehlende Angriffspunkte der Gegenseite.`
 5. **Der vollständige Brieftext** (Inhalt von BRIEF_ANWALT_N.md)
 
 **Aufruf via Bash:**

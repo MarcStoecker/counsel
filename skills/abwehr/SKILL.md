@@ -43,7 +43,15 @@ Gesamte Ausgabe auf **Deutsch**.
 - **Nicht voreilig einräumen.** Jedes zugestandene Faktum stärkt die Gegenseite. Im Zweifel: *"wird bestritten"*.
 - **Kein Detail bestätigen**, das nicht zwingend bestätigt werden muss. "Der Mandant bestreitet den Sachvortrag der Gegenseite" reicht als erste Reaktion.
 
-**ACHTUNG: § 138 Abs. 1 ZPO — Wahrheitspflicht.** Tatsachen, die dem Mandanten bekannt und wahr sind, dürfen NICHT bestritten werden. Zulässiges Bestreiten: (a) Tatsachen außerhalb der eigenen Wahrnehmungssphäre, (b) Tatsachen, deren Richtigkeit nicht bekannt (Bestreiten mit Nichtwissen, § 138 Abs. 4 ZPO), (c) Tatsachen, die der Gegner nicht hinreichend substanziiert hat. In Phase 4 MUSS explizit gefragt werden, welche gegnerischen Behauptungen der Mandant als zutreffend bestätigt — diese dürfen nicht bestritten werden.
+**§ 138 ZPO — Wahrheitspflicht taktisch anwenden:**
+
+Die Wahrheitspflicht verbietet bewusst unwahre Tatsachenbehauptungen. Sie verbietet **nicht**, die Spielräume maximal auszuschöpfen:
+
+- **Bestreiten mit Nichtwissen (§ 138 Abs. 4 ZPO) großzügig nutzen.** Alles, was nicht in der eigenen Wahrnehmungssphäre des Mandanten liegt, kann mit Nichtwissen bestritten werden — auch wenn es plausibel klingt. *"Dem Mandanten ist nicht bekannt, ob..."* ist eine mächtige Formulierung.
+- **Substanziierungslast beim Gegner lassen.** Pauschale Behauptungen der Gegenseite verdienen nur pauschales Bestreiten. Erst wenn die Gegenseite substanziiert vorträgt, muss substanziiert erwidert werden.
+- **Nicht einräumen, was nicht eingeräumt werden muss.** Die Frage ist nicht *"Ist das wahr?"* sondern *"Kann die Gegenseite es beweisen?"* Was nicht bewiesen werden kann, kann bestritten werden — solange es nicht nachweislich in der eigenen Wahrnehmungssphäre liegt.
+- **Tatsachen umdeuten statt bestreiten.** Wenn ein Fakt nicht bestreitbar ist: die Bedeutung bestreiten. *"Der Mandant hat das Schreiben erhalten"* (nicht bestreitbar) → *"...hat daraus jedoch keine Zahlungspflicht abgeleitet, da..."* (Deutungshoheit behalten).
+- **Harte Grenze:** Tatsachen, die der Mandant in Phase 4 ausdrücklich als zutreffend bestätigt, dürfen nicht bestritten werden. Aber: so wenig wie möglich bestätigen lassen. Die Frage in Phase 4 lautet: *"Welche Behauptungen sind nachweislich wahr UND in Ihrer Wahrnehmungssphäre?"* — nicht *"Stimmt das?"*
 
 ### 2. Informationsökonomie — Eigene Karten verdeckt halten
 
@@ -230,7 +238,7 @@ Widerklage-Checkliste: (a) Eigene vertragliche Ansprüche des Mandanten? (b) Sch
 - Vorherige mündliche Absprachen oder Nebenabreden
 - Wirtschaftliche Überlegungen (Kosten-Nutzen)
 - Gewünschte Eskalationsstufe und Tonalität
-- **Welche gegnerischen Behauptungen bestätigt der Mandant als zutreffend?** (Wahrheitspflicht § 138 ZPO — diese dürfen nicht bestritten werden)
+- **Welche gegnerischen Behauptungen sind dem Mandanten nachweislich bekannt und fallen in seine Wahrnehmungssphäre?** (Nur diese unterliegen der Wahrheitspflicht nach § 138 ZPO. Alles andere: Bestreiten mit Nichtwissen. So wenig wie möglich bestätigen — nicht fragen *"Stimmt das?"*, sondern *"Können Sie das Gegenteil belegen oder liegt es außerhalb Ihrer Kenntnis?"*)
 
 **Antworten abwarten, bevor Phase 5 beginnt.** `AskUserQuestion` für jede Fragerunde verwenden, bis alle Lücken geschlossen sind.
 
@@ -308,12 +316,13 @@ Der Prompt enthält:
 2. **Rollenanweisung:** `Du bist ein erfahrener deutscher Fachanwalt mit 25 Jahren Erfahrung in der Anspruchsdurchsetzung. Du hast das folgende Erwiderungsschreiben der Gegenseite erhalten. Deine Aufgabe: Zerlege diese Erwiderung systematisch. Finde jede Schwachstelle in der Verteidigung.`
 3. **Prüfauftrag:**
    - Falsch angewandte oder nicht existierende Paragraphen identifizieren
-   - Schwächen in der Bestreitungsstrategie aufdecken
-   - Unzulässiges Bestreiten identifizieren (§ 138 ZPO)
+   - Schwächen in der Bestreitungsstrategie aufdecken — wo ist das Bestreiten angreifbar, weil es nachweislich in der Wahrnehmungssphäre des Mandanten liegt?
+   - Stellen finden, an denen das Bestreiten mit Nichtwissen vor Gericht nicht standhalten würde (§ 138 Abs. 4 ZPO) — wo könnte ein Richter es als unglaubwürdig zurückweisen?
    - Lücken in der Verteidigung benennen, die der Anspruchsteller ausnutzen kann
    - Zitierte Urteile auf Plausibilität prüfen
    - Gegenansprüche und Aufrechnungen auf Schlüssigkeit prüfen
-4. **Formatanweisung:** `Keine Komplimente. Nur Probleme. Ausgabe auf Deutsch. Strukturiere nach: (1) Formelle Mängel, (2) Schwächen der Bestreitungsstrategie, (3) Angreifbare Gegenansprüche, (4) Ausnutzbare Lücken für den Anspruchsteller.`
+   - Implizite Einräumungen oder widersprüchliche Aussagen finden, die die eigene Bestreitungsstrategie untergraben
+4. **Formatanweisung:** `Keine Komplimente. Nur Probleme. Ausgabe auf Deutsch. Strukturiere nach: (1) Formelle Mängel, (2) Angreifbares Bestreiten und taktische Schwächen, (3) Angreifbare Gegenansprüche, (4) Ausnutzbare Lücken für den Anspruchsteller.`
 5. **Der vollständige Text des Erwiderungsschreibens** (Inhalt von BRIEF_GEGENSEITE_N.md)
 
 **Aufruf via Bash:**
@@ -434,5 +443,5 @@ Falls die Codex-Zweitmeinung wesentlich von der eigenen Einschätzung abweicht: 
 - **RDG-Hinweis:** Keine Rechtsberatung i.S.d. § 2 RDG. Alle Ausgaben sind Entwürfe zur Vorbereitung. Generierte Schreiben **nicht ungeprüft versenden**. Vor Versand: Prüfung durch zugelassenen Rechtsanwalt empfohlen.
 - Bei fehlenden Informationen **nicht raten** — `AskUserQuestion` verwenden
 - **Konsequent in der Sache, professionell im Ton**
-- Grenze zwischen scharfer Mandantenvertretung und standeswidrigem Verhalten beachten (§ 43a BRAO, § 1 BORA). Keine Drohungen über zulässige Rechtsfolgenhinweise hinaus. Keine persönlichen Angriffe auf den gegnerischen Anwalt.
+- **Standesrecht (§ 43a BRAO, § 1 BORA) kennen, nicht fürchten.** Scharfe Mandantenvertretung ist kein standeswidriges Verhalten — sie ist die Pflicht. Rechtsfolgenhinweise dürfen Druck erzeugen, solange sie sachlich zusammenhängen. Persönliche Angriffe auf den gegnerischen Anwalt vermeiden — nicht aus Höflichkeit, sondern weil sie vor Gericht schwach wirken und vom Argument ablenken.
 - **Jede Phase endet mit Validierungstabelle.** Keine Ausnahmen.
