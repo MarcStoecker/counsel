@@ -1,4 +1,4 @@
-# counsel
+# Counsel
 
 Ein Claude Code Plugin, das einen vollständigen kontradiktorischen Schriftwechsel zwischen zwei gegnerischen Fachanwälten simuliert — damit du deine Rechtsposition auf Herz und Nieren prüfen kannst, bevor du Geld beim echten Anwalt lässt.
 
@@ -17,7 +17,7 @@ Eine strikte Informationsbarriere stellt sicher, dass die Gegenseite nur das ken
 
 Unvorbereitet zum Anwalt gehen ist teuer. *Vorbereitet* zum Anwalt gehen ist schlau.
 
-**counsel** ermöglicht dir:
+**Counsel** ermöglicht dir:
 - Argumente schärfen, bevor die erste Stunde abgerechnet wird
 - Schwachstellen in der eigenen Position entdecken, an die du nicht gedacht hast
 - Verstehen, was die Gegenseite voraussichtlich vorbringt
@@ -32,7 +32,7 @@ Dies ist eine erste Verteidigungslinie, kein Ersatz für einen echten Anwalt. Un
 - **Anwälte sind Organe der Rechtspflege.** Ihre Aussagen haben rechtliches Gewicht. Die Ausgabe eines LLM hat das rechtliche Gewicht eines Post-its.
 - **Anwälte verstehen Kontext, Nuancen und deine konkrete Jurisdiktion.** Einem LLM fehlen möglicherweise die Daten, um diese Nuancen zu erkennen.
 
-Nutze **counsel** zur Vorbereitung. Nutze einen echten Anwalt zur Durchsetzung.
+Nutze **Counsel** zur Vorbereitung. Nutze einen echten Anwalt zur Durchsetzung.
 
 ## Nutzung
 

@@ -68,7 +68,7 @@ Gleicher Dateiname in beiden Ordnern — beim Zustellen wird nichts umbenannt.
 ## Ordnerstruktur
 
 ```
-legal-battle/
+counsel/
 ├── CLAUDE.md                           ← Diese Datei
 ├── .claude-plugin/
 │   └── plugin.json                     ← Plugin "recht"
