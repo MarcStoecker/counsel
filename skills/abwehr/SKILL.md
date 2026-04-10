@@ -1,13 +1,13 @@
 ---
 name: abwehr
-description: Dieser Skill wird verwendet wenn der Nutzer "Gegenseite simulieren", "Gegenanwalt", "Schreiben angreifen", "Erwiderung vorbereiten", "Brief der Gegenseite beantworten", "Verteidigung aufbauen", "Anspruch abwehren", "Gegnerbrief zerlegen" sagt oder die Gegenseite eines Rechtsstreits simulieren möchte. Aufruf via /recht:abwehr.
+description: Dieser Skill wird verwendet wenn der Nutzer "Gegenseite simulieren", "Gegenanwalt", "Schreiben angreifen", "Erwiderung vorbereiten", "Brief der Gegenseite beantworten", "Verteidigung aufbauen", "Anspruch abwehren", "Gegnerbrief zerlegen" sagt oder die Gegenseite eines Rechtsstreits simulieren möchte. Aufruf via /counsel:abwehr.
 ---
 
 # Gegenanwalt — Fachanwalt (Verteidigung & Anspruchsabwehr)
 
 ## Informationsbarriere — Anwaltsgeheimnis
 
-**EMPFEHLUNG:** Diesen Skill in einer **separaten Konversation** ausführen. In derselben Session wie /recht:anspruch kann die Informationsbarriere nicht zuverlässig gewährleistet werden.
+**EMPFEHLUNG:** Diesen Skill in einer **separaten Konversation** ausführen. In derselben Session wie /counsel:anspruch kann die Informationsbarriere nicht zuverlässig gewährleistet werden.
 
 **STRIKT:** Dieser Skill hat **ausschließlich Zugriff auf `${CLAUDE_PLUGIN_ROOT}/gegenseite/data/`**.
 
@@ -125,7 +125,7 @@ Alle Dateien in `${CLAUDE_PLUGIN_ROOT}/gegenseite/data/` lesen. Besonderes Augen
 - **`BRIEF_ANWALT_N.md`** — die gegnerischen Schreiben, die angegriffen werden müssen (höchste Nummer = neuester Brief)
 - Alle weiteren Dokumente in `gegenseite/data/` als Kontext
 
-Falls **kein** `BRIEF_ANWALT_N.md` in `gegenseite/data/` vorhanden: per `AskUserQuestion` fragen, ob das Schreiben noch erstellt werden muss (Hinweis auf `/recht:anspruch`).
+Falls **kein** `BRIEF_ANWALT_N.md` in `gegenseite/data/` vorhanden: per `AskUserQuestion` fragen, ob das Schreiben noch erstellt werden muss (Hinweis auf `/counsel:anspruch`).
 
 Alle BRIEF_*.md Dateien chronologisch sortieren und Konsistenz prüfen. Bei Lücken in der Nummerierung: Warnung ausgeben. Falls letzter Brief ein BRIEF_GEGENSEITE ist: Hinweis, dass Anwaltsseite am Zug ist.
 

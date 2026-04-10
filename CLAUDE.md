@@ -6,8 +6,8 @@ Dieses Projekt simuliert einen vollständigen außergerichtlichen Schriftwechsel
 
 Zwei unabhängige Skills agieren als gegnerische Anwälte, die ausschließlich über formelle Briefe miteinander kommunizieren — genau wie in der Realität:
 
-- **`/recht:anspruch`** — Dein Anwalt. Erhebt die Sachlage, analysiert deine Rechtsposition, erstellt ein Forderungsschreiben.
-- **`/recht:abwehr`** — Der Gegenanwalt. Erhält nur den Brief deines Anwalts und zerlegt ihn systematisch. Kennt deine interne Strategie nicht.
+- **`/counsel:anspruch`** — Dein Anwalt. Erhebt die Sachlage, analysiert deine Rechtsposition, erstellt ein Forderungsschreiben.
+- **`/counsel:abwehr`** — Der Gegenanwalt. Erhält nur den Brief deines Anwalts und zerlegt ihn systematisch. Kennt deine interne Strategie nicht.
 
 Beide Skills recherchieren aktiv im Web nach Gesetzestexten, Urteilen und Fachmeinungen. Jeder zitierte Paragraph wird online verifiziert — nichts aus dem Gedächtnis. Das Rechtsgebiet ist flexibel wählbar (Vertragsrecht, Mietrecht, Arbeitsrecht, IT-Recht, etc.).
 
@@ -15,7 +15,7 @@ Beide Skills recherchieren aktiv im Web nach Gesetzestexten, Urteilen und Fachme
 
 Das zentrale Designprinzip ist die **strikte Informationstrennung** — wie beim echten Anwaltsgeheimnis:
 
-| | `/recht:anspruch` (Anwalt) | `/recht:abwehr` (Gegenanwalt) |
+| | `/counsel:anspruch` (Anwalt) | `/counsel:abwehr` (Gegenanwalt) |
 |---|---|---|
 | **Liest** | `anwalt/SACHLAGE.md`, `anwalt/data/*` | `gegenseite/data/*` (nur Briefe + eigene Belege) |
 | **Schreibt** | `anwalt/data/BRIEF_ANWALT_N.md` | `gegenseite/data/BRIEF_GEGENSEITE_N.md` |
@@ -39,7 +39,7 @@ Gleicher Dateiname in beiden Ordnern — beim Zustellen wird nichts umbenannt.
 ## Ablauf
 
 ```
-1. /recht:anspruch ausführen
+1. /counsel:anspruch ausführen
    ├── Rechtsgebiet und Sachlage per Q&A erheben → SACHLAGE.md (vertraulich in anwalt/)
    ├── Belege in anwalt/data/ analysieren
    ├── Rechtliche Analyse mit Webrecherche
@@ -47,7 +47,7 @@ Gleicher Dateiname in beiden Ordnern — beim Zustellen wird nichts umbenannt.
    ├── BRIEF_ANWALT_1.md in anwalt/data/ erstellen
    └── Kopie nach gegenseite/data/ zustellen
 
-2. /recht:abwehr ausführen
+2. /counsel:abwehr ausführen
    ├── BRIEF_ANWALT_1.md in gegenseite/data/ lesen
    ├── Schwachstellenanalyse (formell + materiell)
    ├── Gegnerische Paragraphen und Urteile online prüfen
@@ -56,7 +56,7 @@ Gleicher Dateiname in beiden Ordnern — beim Zustellen wird nichts umbenannt.
    ├── BRIEF_GEGENSEITE_1.md in gegenseite/data/ erstellen
    └── Kopie nach anwalt/data/ zustellen
 
-3. /recht:anspruch erneut ausführen
+3. /counsel:anspruch erneut ausführen
    ├── BRIEF_GEGENSEITE_1.md lesen und analysieren
    ├── SACHLAGE.md aktualisieren
    ├── BRIEF_ANWALT_2.md erstellen
@@ -87,9 +87,9 @@ legal-battle/
 │       └── BRIEF_ANWALT_2.md           ← (zugestellt) Kopie deiner Replik
 └── skills/
     ├── anspruch/
-    │   └── SKILL.md                    ← /recht:anspruch — Dein Anwalt
+    │   └── SKILL.md                    ← /counsel:anspruch — Dein Anwalt
     └── abwehr/
-        └── SKILL.md                    ← /recht:abwehr — Gegenanwalt (Simulation)
+        └── SKILL.md                    ← /counsel:abwehr — Gegenanwalt (Simulation)
 ```
 
 ## Nutzung
@@ -97,7 +97,7 @@ legal-battle/
 ### Erstmaliger Start
 
 ```
-/recht:anspruch
+/counsel:anspruch
 ```
 
 Der Skill fragt per Q&A nach:
@@ -113,14 +113,14 @@ PDFs, E-Mails, Screenshots und andere Dokumente in `anwalt/data/` ablegen. Der S
 ### Gegenseite simulieren
 
 ```
-/recht:abwehr
+/counsel:abwehr
 ```
 
 Startet den Gegenanwalt. Dieser liest nur `gegenseite/data/` und stellt Nachfragen aus Gegenseiten-Perspektive.
 
 ### Schriftwechsel fortsetzen
 
-Einfach `/recht:anspruch` bzw. `/recht:abwehr` abwechselnd aufrufen. Jeder Skill erkennt automatisch vorhandene Briefe und knüpft an.
+Einfach `/counsel:anspruch` bzw. `/counsel:abwehr` abwechselnd aufrufen. Jeder Skill erkennt automatisch vorhandene Briefe und knüpft an.
 
 ## Qualitätssicherung
 

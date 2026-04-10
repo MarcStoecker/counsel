@@ -1,5 +1,5 @@
 {
-  "name": "recht",
-  "description": "Kontradiktorischer Rechtsaustausch mit zwei gegnerischen deutschen Fachanwälten. /recht:anspruch für eigene Anspruchsdurchsetzung, /recht:abwehr für Simulation der Gegenseite. Rechtsgebiet flexibel wählbar (Vertragsrecht, Mietrecht, Arbeitsrecht, IT-Recht, etc.).",
+  "name": "counsel",
+  "description": "Kontradiktorischer Rechtsaustausch mit zwei gegnerischen deutschen Fachanwälten. /counsel:anspruch für eigene Anspruchsdurchsetzung, /counsel:abwehr für Simulation der Gegenseite. Rechtsgebiet flexibel wählbar (Vertragsrecht, Mietrecht, Arbeitsrecht, IT-Recht, etc.).",
   "version": "1.0.0"
 }

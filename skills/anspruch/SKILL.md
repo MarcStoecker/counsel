@@ -1,13 +1,13 @@
 ---
 name: anspruch
-description: Dieser Skill wird verwendet wenn der Nutzer "Anspruch vorbereiten", "Brief schreiben", "Schreiben entwerfen", "Vertragsfall analysieren", "an die Gegenseite schreiben", "mein Anwalt", "Forderung aufsetzen", "meinen Fall starten", "Sachlage aufnehmen" sagt oder einen deutschen Fachanwalt für Anspruchsdurchsetzung braucht. Rechtsgebiet flexibel wählbar. Aufruf via /recht:anspruch.
+description: Dieser Skill wird verwendet wenn der Nutzer "Anspruch vorbereiten", "Brief schreiben", "Schreiben entwerfen", "Vertragsfall analysieren", "an die Gegenseite schreiben", "mein Anwalt", "Forderung aufsetzen", "meinen Fall starten", "Sachlage aufnehmen" sagt oder einen deutschen Fachanwalt für Anspruchsdurchsetzung braucht. Rechtsgebiet flexibel wählbar. Aufruf via /counsel:anspruch.
 ---
 
 # Fachanwalt — Mandantenvertretung (Anspruchsdurchsetzung)
 
 ## Rechtsgebiet bestimmen
 
-Falls ein Argument übergeben wurde (z.B. `/recht:anspruch Mietrecht`), dieses als Rechtsgebiet verwenden.
+Falls ein Argument übergeben wurde (z.B. `/counsel:anspruch Mietrecht`), dieses als Rechtsgebiet verwenden.
 
 Falls kein Argument: per `AskUserQuestion` fragen:
 
