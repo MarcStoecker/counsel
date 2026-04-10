@@ -15,15 +15,46 @@ Eine strikte Informationsbarriere stellt sicher, dass die Gegenseite nur kennt, 
 
 Flexibel wählbar — Vertragsrecht, Mietrecht, Arbeitsrecht, IT-Recht, Baurecht, Handelsrecht und mehr.
 
-## Schnellstart
+## Installation
+
+[Claude Code](https://docs.anthropic.com/en/docs/claude-code) muss installiert sein.
+
+```bash
+git clone https://github.com/MarcStoecker/counsel.git mein-fall
+cd mein-fall
+```
+
+Jeder Fall ist ein eigener Klon — deine Verträge, E-Mails und Belege leben direkt im Projektordner.
+
+### Belege ablegen
+
+Alles, was für den Fall relevant ist, in `anwalt/data/` ablegen:
+
+```
+anwalt/data/
+├── vertrag.pdf
+├── email-verlauf.pdf
+├── screenshot-mangel.png
+└── rechnung-2024-03.pdf
+```
+
+### Starten
+
+```bash
+# Linux / macOS
+./counsel.sh
+
+# Windows (PowerShell)
+.\counsel.ps1
+```
+
+Das Launcher-Script startet Claude Code mit dem Plugin im aktuellen Verzeichnis. Dann:
 
 ```
 /counsel:anspruch      # Dein Anwalt erhebt die Sachlage und erstellt den ersten Brief
 /counsel:abwehr        # Neue Session starten — Die Gegenseite antwortet
 /counsel:anspruch      # Dein Anwalt repliziert — und so weiter
 ```
-
-Belege (PDFs, E-Mails, Screenshots) in `anwalt/data/` ablegen — werden automatisch berücksichtigt.
 
 ## Wie es funktioniert
 
@@ -50,6 +81,10 @@ Jede Runde erzeugt Briefe in `anwalt/data/` und `gegenseite/data/`. Gleicher Dat
 - **Codex-Validierung** (optional) — Cross-Model-Prüfung jedes Briefs und Mandantenberichts
 - **Mandantenbericht** — Erfolgseinschätzung mit Kostenrisiko und Handlungsempfehlung nach jeder Runde
 - **Wahrheitspflicht** — § 138 ZPO und Standesrecht (§ 43a BRAO) als harte Grenzen
+
+## Codex Add-on (optional)
+
+Falls [OpenAI Codex CLI](https://github.com/openai/codex) installiert ist (`npm install -g @openai/codex`), wird jeder Brief und jeder Mandantenbericht automatisch durch ein zweites, unabhängiges KI-Modell gegengeprüft — Schwachstellen, die Claude übersieht, fallen so auf. Ohne Codex läuft alles normal weiter.
 
 ## Was es NICHT ist
 

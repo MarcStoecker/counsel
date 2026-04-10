@@ -1,0 +1,8 @@
+# Mandantendaten — niemals committen
+anwalt/SACHLAGE.md
+anwalt/data/*
+gegenseite/data/*
+
+# .gitkeep behalten
+!anwalt/data/.gitkeep
+!gegenseite/data/.gitkeep
