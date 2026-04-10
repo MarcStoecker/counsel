@@ -1,76 +1,76 @@
 # counsel
 
-A Claude Code plugin that simulates a full adversarial legal exchange between two opposing attorneys — so you can stress-test your legal position before spending money on the real thing.
+Ein Claude Code Plugin, das einen vollständigen kontradiktorischen Schriftwechsel zwischen zwei gegnerischen Fachanwälten simuliert — damit du deine Rechtsposition auf Herz und Nieren prüfen kannst, bevor du Geld beim echten Anwalt lässt.
 
-## What it does
+## Was es macht
 
-Two independent AI skills act as opposing lawyers, communicating exclusively through formal letters — just like in real life:
+Zwei unabhängige KI-Skills agieren als gegnerische Anwälte, die ausschließlich über formelle Briefe miteinander kommunizieren — genau wie in der Realität:
 
-- **`/counsel:anspruch`** — Your attorney. Gathers the facts, analyzes your legal position, drafts a demand letter.
-- **`/counsel:abwehr`** — The opposing attorney. Receives only your lawyer's letter and systematically tears it apart. Has no access to your internal strategy.
+- **`/counsel:anspruch`** — Dein Anwalt. Erhebt die Sachlage, analysiert deine Rechtsposition, erstellt ein Forderungsschreiben.
+- **`/counsel:abwehr`** — Der Gegenanwalt. Erhält nur den Brief deines Anwalts und zerlegt ihn systematisch. Kennt deine interne Strategie nicht.
 
-Both sides actively research statutes, court rulings, and legal commentary online. Every cited paragraph is verified — nothing from memory.
+Beide Seiten recherchieren aktiv Gesetzestexte, Urteile und Fachmeinungen im Web. Jeder zitierte Paragraph wird online verifiziert — nichts aus dem Gedächtnis.
 
-A strict information barrier ensures the opposing side only knows what was formally served, just like attorney-client privilege in the real world.
+Eine strikte Informationsbarriere stellt sicher, dass die Gegenseite nur das kennt, was ihr formal zugestellt wurde — wie beim echten Anwaltsgeheimnis.
 
-## Why this exists
+## Warum es das gibt
 
-Going to a lawyer cold is expensive. Going to a lawyer *prepared* is smart.
+Unvorbereitet zum Anwalt gehen ist teuer. *Vorbereitet* zum Anwalt gehen ist schlau.
 
-**counsel** lets you:
-- Sharpen your arguments before the first billable hour starts
-- Discover weak spots in your position that you hadn't considered
-- Understand what the other side will likely throw at you
-- Walk into your lawyer's office with a clear, structured case
+**counsel** ermöglicht dir:
+- Argumente schärfen, bevor die erste Stunde abgerechnet wird
+- Schwachstellen in der eigenen Position entdecken, an die du nicht gedacht hast
+- Verstehen, was die Gegenseite voraussichtlich vorbringt
+- Mit einem klaren, strukturierten Fall beim Anwalt aufschlagen
 
-## What this is NOT
+## Was es NICHT ist
 
-This is a first line of defense, not a replacement for an actual lawyer. Here's why:
+Dies ist eine erste Verteidigungslinie, kein Ersatz für einen echten Anwalt. Und zwar deshalb:
 
-- **Lawyers have professional liability insurance (Berufshaftpflicht).** If they mess up, you're covered. An LLM gives you a confident-sounding paragraph and wishes you good luck.
-- **Lawyers can act on your behalf.** They sign documents, file motions, represent you in court, negotiate settlements. An LLM can draft a strongly worded letter and then watch from the sidelines.
-- **Lawyers are officers of the court.** Their statements carry legal weight. An LLM's output carries the legal weight of a sticky note.
-- **Lawyers understand context, nuance, and your specific jurisdiction.** An LLM understands tokens.
+- **Anwälte haben eine Berufshaftpflicht.** Wenn sie Mist bauen, bist du abgesichert. Ein LLM liefert dir einen selbstbewusst klingenden Absatz und wünscht dir viel Glück.
+- **Anwälte können für dich handeln.** Sie unterschreiben Dokumente, stellen Anträge, vertreten dich vor Gericht, verhandeln Vergleiche. Ein LLM kann einen scharfen Brief entwerfen und dann von der Seitenlinie zusehen.
+- **Anwälte sind Organe der Rechtspflege.** Ihre Aussagen haben rechtliches Gewicht. Die Ausgabe eines LLM hat das rechtliche Gewicht eines Post-its.
+- **Anwälte verstehen Kontext, Nuancen und deine konkrete Jurisdiktion.** Einem LLM fehlen möglicherweise die Daten, um diese Nuancen zu erkennen.
 
-Use **counsel** to prepare. Use a real lawyer to execute.
+Nutze **counsel** zur Vorbereitung. Nutze einen echten Anwalt zur Durchsetzung.
 
-## Usage
+## Nutzung
 
-### Prerequisites
+### Voraussetzungen
 
-- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI or Desktop App
-- This plugin installed (clone the repo, Claude Code discovers it automatically)
+- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI oder Desktop App
+- Dieses Plugin installiert (Repo klonen, Claude Code erkennt es automatisch)
 
-### Quick start
-
-```
-/counsel:anspruch      # Start: your attorney gathers facts and drafts the first letter
-/counsel:abwehr        # Opposing counsel responds
-/counsel:anspruch      # Your attorney replies — and so on
-```
-
-Alternate between the two until you're satisfied with the exchange. Drop supporting documents (PDFs, emails, screenshots) into `anwalt/data/` and they'll be picked up automatically.
-
-### Supported legal areas
-
-Flexible — contract law, tenancy law, employment law, IT law, and more. The skill asks you at the start.
-
-## How it works
+### Schnellstart
 
 ```
-You ──▶ /counsel:anspruch ──▶ Demand letter ──▶ served to opposing side
+/counsel:anspruch      # Start: Dein Anwalt erhebt die Sachlage und erstellt den ersten Brief
+/counsel:abwehr        # Die Gegenseite antwortet
+/counsel:anspruch      # Dein Anwalt repliziert — und so weiter
+```
+
+Wechsle zwischen beiden, bis du mit dem Ergebnis zufrieden bist. Belege (PDFs, E-Mails, Screenshots) einfach in `anwalt/data/` ablegen — sie werden automatisch berücksichtigt.
+
+### Unterstützte Rechtsgebiete
+
+Flexibel wählbar — Vertragsrecht, Mietrecht, Arbeitsrecht, IT-Recht und mehr. Der Skill fragt beim Start danach.
+
+## Wie es funktioniert
+
+```
+Du ──▶ /counsel:anspruch ──▶ Forderungsschreiben ──▶ Zustellung an Gegenseite
+                                                              │
+                                                /counsel:abwehr ◀──┘
                                                         │
-                                          /counsel:abwehr ◀──┘
-                                                  │
-                                          Rebuttal letter ──▶ served back
-                                                                  │
-                                            /counsel:anspruch ◀───┘
-                                                    │
-                                              ... and so on
+                                                Erwiderung ──▶ Zustellung zurück
+                                                                        │
+                                                  /counsel:anspruch ◀───┘
+                                                          │
+                                                    ... und so weiter
 ```
 
-Each round produces formal letters stored in `anwalt/data/` and `gegenseite/data/`. The information barrier is enforced structurally — the opposing attorney skill literally cannot read your confidential files.
+Jede Runde erzeugt formelle Briefe in `anwalt/data/` und `gegenseite/data/`. Die Informationsbarriere wird strukturell durchgesetzt — der Gegenanwalt-Skill kann deine vertraulichen Dateien schlicht nicht lesen.
 
-## License
+## Lizenz
 
-This project does not constitute legal advice within the meaning of the German Legal Services Act (RDG). It is a preparation and self-assessment tool.
+Dieses Projekt stellt keine Rechtsberatung im Sinne des Rechtsdienstleistungsgesetzes (RDG) dar. Es dient der Vorbereitung und Selbsteinschätzung.
