@@ -1,5 +1,5 @@
 {
   "name": "counsel",
-  "description": "Kontradiktorischer Rechtsaustausch mit zwei gegnerischen deutschen Fachanwälten. /counsel:anspruch für eigene Anspruchsdurchsetzung, /counsel:abwehr für Simulation der Gegenseite. Rechtsgebiet flexibel wählbar (Vertragsrecht, Mietrecht, Arbeitsrecht, IT-Recht, etc.).",
+  "description": "Deutsche Rechtsassistenz: /counsel:anspruch für Anspruchsdurchsetzung, /counsel:abwehr für Gegenseiten-Simulation, /counsel:vertrag für Vertragsgestaltung mit iterativem Prüfgremium. Rechtsgebiet flexibel.",
   "version": "1.0.0"
 }

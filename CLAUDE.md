@@ -8,16 +8,18 @@ Simuliert einen außergerichtlichen Schriftwechsel zwischen zwei gegnerischen Fa
 
 - **`/counsel:anspruch`** — Dein Anwalt. Erhebt Sachlage, analysiert, erstellt Forderungsschreiben.
 - **`/counsel:abwehr`** — Gegenanwalt. Erhält nur den Brief, zerlegt ihn. Kennt deine Strategie nicht.
+- **`/counsel:vertrag`** — Vertragsgestaltung. Erstellt/prüft Verträge mit iterativem 5-Subagenten-Prüfgremium.
 
 Rechtsgebiet flexibel (Vertragsrecht, Mietrecht, Arbeitsrecht, IT-Recht, etc.).
 
 ## Informationsbarriere
 
-| | `/counsel:anspruch` | `/counsel:abwehr` |
-|---|---|---|
-| **Liest** | `anwalt/SACHLAGE.md`, `anwalt/data/*` | **nur** `gegenseite/data/*` |
-| **Schreibt** | `anwalt/data/BRIEF_ANWALT_N.md` | `gegenseite/data/BRIEF_GEGENSEITE_N.md` |
-| **TABU** | — | `anwalt/` (komplett), `skills/anspruch/` |
+| | `/counsel:anspruch` | `/counsel:abwehr` | `/counsel:vertrag` |
+|---|---|---|---|
+| **Liest** | `anwalt/SACHLAGE.md`, `anwalt/data/*` | **nur** `gegenseite/data/*` | `vertrag/SACHLAGE.md`, `vertrag/data/*` |
+| **Schreibt** | `anwalt/data/BRIEF_ANWALT_N.md` | `gegenseite/data/BRIEF_GEGENSEITE_N.md` | `vertrag/data/VERTRAG_vN.md` |
+| **TABU** | — | `anwalt/` (komplett), `skills/anspruch/` | — |
+| **Subagenten sehen** | — | — | **nur** `VERTRAG_vN.md` (kein Kontext) |
 
 `/counsel:abwehr` in **separater Session** ausführen — Informationsbarriere ist prompt-basiert.
 
@@ -43,6 +45,24 @@ Rechtsgebiet flexibel (Vertragsrecht, Mietrecht, Arbeitsrecht, IT-Recht, etc.).
    └── Mandantenbericht + Codex-Zweitmeinung (optional)
 
 3. Wiederholen.
+
+4. /counsel:vertrag (eigenständig)
+   ├── Sachlage erheben → SACHLAGE.md
+   ├── Grundlagenrecherche (4 Subagenten parallel) → GRUNDLAGEN.md
+   │   ├── Mustervertragsrecherche (IHK, BMJ, Anwaltsverlage)
+   │   ├── Zwingende Gesetzesvorgaben
+   │   ├── Standardklauseln und Best Practices
+   │   └── Typische Fallstricke und Streitpunkte
+   ├── Vertragsentwurf auf Basis der Grundlagensynthese → VERTRAG_v1.md
+   ├── Prüfgremium (5 Subagenten parallel, Convergence Loop)
+   │   ├── Gegenseiten-Anwalt
+   │   ├── AGB-Prüfer
+   │   ├── Vollständigkeits-Check
+   │   ├── Widerspruchs-Scanner
+   │   └── Formvorschriften-Gate
+   ├── Konsolidierung → VERTRAG_v2.md → Loop bis CLEAN
+   ├── Codex-Prüfung (optional)
+   └── Mandantenbericht + Codex-Zweitmeinung (optional)
 ```
 
 ## Phasen
@@ -76,9 +96,22 @@ Rechtsgebiet flexibel (Vertragsrecht, Mietrecht, Arbeitsrecht, IT-Recht, etc.).
 | 7 | **Mandantenbericht** — Abwehrchancen, Empfehlung |
 | 7b | **Codex-Zweitmeinung** (optional) — Unabhängige Bewertung |
 
+### /counsel:vertrag
+
+| Phase | Inhalt |
+|-------|--------|
+| 1 | **Sachlage** — Vertragstyp, Parteien, Anforderungen, SACHLAGE.md |
+| 2 | **Grundlagenrecherche** — 4 Subagenten parallel: Mustervorlagen, zwingendes Recht, Best Practices, Fallstricke → GRUNDLAGEN.md |
+| 3 | **Entwurf** — Auf Basis der Grundlagensynthese, nicht frei formuliert → VERTRAG_v1.md |
+| 4 | **Prüfgremium** — 5 Subagenten parallel (Convergence Loop), nur Vertragstext als Input |
+| 5 | **Konsolidierung** — Findings einarbeiten → VERTRAG_v(N+1).md, Loop bis CLEAN/Max/Oszillation |
+| 6 | **Codex-Prüfung** (optional) — Cross-Model-Validierung des finalen Vertrags |
+| 7 | **Mandantenbericht** — Schutzqualität, AGB-Festigkeit, Vollständigkeit, Risiken |
+| 7b | **Codex-Zweitmeinung** (optional) — Unabhängige Bewertung |
+
 ## Subagenten
 
-Beide Skills setzen 4 parallele Subagenten (Agent tool) ein:
+Anspruch und Abwehr setzen 4 parallele Subagenten (Agent tool) ein:
 
 | # | Anspruch | Abwehr |
 |---|----------|--------|
@@ -86,6 +119,18 @@ Beide Skills setzen 4 parallele Subagenten (Agent tool) ein:
 | 2 | Urteilsrecherche | Gegenurteile recherchieren |
 | 3 | Gegenrecherche (eigene Schwächen) | Eigene Verteidigungsrecherche |
 | 4 | Validierung | Eigenvalidierung |
+
+Vertrag setzt 5 parallele Subagenten im **Convergence Loop** ein:
+
+| # | Subagent | Auftrag |
+|---|----------|---------|
+| 1 | Gegenseiten-Anwalt | Klauseln gegen den Auftraggeber ausnutzen |
+| 2 | AGB-Prüfer | §§ 305-310 BGB Konformität |
+| 3 | Vollständigkeits-Check | Fehlende Standardklauseln/Regelungslücken |
+| 4 | Widerspruchs-Scanner | Interne Widersprüche und Ambiguitäten |
+| 5 | Formvorschriften-Gate | Form, Fristen, Registrierungspflichten |
+
+Jeder Subagent gibt `CLEAN` oder konkrete Neuformulierungen zurück. Frische Instanzen pro Runde. Loop endet bei: alle CLEAN, max 5 Runden, oder Oszillation.
 
 ## Codex-Integration (optional)
 
@@ -107,13 +152,21 @@ counsel/
 │       ├── BRIEF_ANWALT_1.md
 │       ├── BRIEF_GEGENSEITE_1.md   ← (zugestellt)
 │       └── BRIEF_ANWALT_2.md
+├── vertrag/                        ← Vertragsgestaltung
+│   ├── SACHLAGE.md                 ← (generiert) Vertragssachlage
+│   ├── GRUNDLAGEN.md               ← (generiert) Recherche-Synthese
+│   └── data/                       ← Vertragsentwürfe
+│       ├── VERTRAG_v1.md
+│       ├── VERTRAG_v2.md           ← (nach Prüfgremium)
+│       └── VERTRAG_v3.md           ← (final)
 ├── gegenseite/
 │   └── data/                       ← Nur Zustellungen
 │       ├── BRIEF_ANWALT_1.md       ← (zugestellt)
 │       └── BRIEF_GEGENSEITE_1.md
 └── skills/
     ├── anspruch/SKILL.md
-    └── abwehr/SKILL.md
+    ├── abwehr/SKILL.md
+    └── vertrag/SKILL.md
 ```
 
 ## Qualitätssicherung
